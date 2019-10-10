@@ -11,7 +11,7 @@ function createFeatures(earthquateData){
         "</h3><hr><p>" + new Date(feature.properties.time) + 
         "</p><hr><p>" + feature.properties.mag);
         // loops for circle size based on mag
-        // loop for circle color based on 
+        // loop for circle color based on (look at wolrd cup exercise 17-1)
     }
 
     var earthquakes = L.geoJSON(earthquateData, {
