@@ -36,9 +36,10 @@ function createFeatures(earthquakeData){
 
     function style(feature) {
         return {
-            opacity: .5,
+            fillOpacity: .65,
             fillColor: colorPicker(feature.properties.mag),
-            radius: radius(feature.properties.mag)
+            radius: radius(feature.properties.mag),
+            stroke: false, 
             
         }
     }
@@ -63,7 +64,7 @@ function createMap(earthquakes) {
         accessToken: API_KEY
     });
 
-    var sateliteMap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+    var satelliteMap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
         attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
         maxZoom: 18,
         id: "mapbox.satellite",
@@ -93,13 +94,13 @@ function createMap(earthquakes) {
 
     var legend = L.control({position: "bottomright"});
     legend.onAdd = function(myMap) {
-        var div = L.DomUtil.create("div", "legend");
+        var div = L.DomUtil.create("div", "info legend");
         div.innerHTML += "<h4>Magnitude</h4>";
         div.innerHTML += '<i style="background:blue"></i><span>0.00 to 1.99</span><br>';
         div.innerHTML += '<i style="background:green"></i><span>2.00 to 2.99</span><br>';
         div.innerHTML += '<i style="background:yellow"></i><span>3.00 to 3.99</span><br>';
         div.innerHTML += '<i style="background:orange"></i><span>4 to 4.99</span><br>';
-        div.innerHTML += '<i style="background:blue"></i><span>5.00+</span><br>';
+        div.innerHTML += '<i style="background:red"></i><span>5.00+</span><br>';
 
         return div;
     };
